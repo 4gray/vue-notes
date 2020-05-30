@@ -1,19 +1,39 @@
 <template>
-    <div class="note-container">
-        <div v-if="!editMode" class="content">
-            <strong>{{ note.text }}</strong>
-            <small>created: {{ note.created }}</small>
-        </div>
-        <div v-else>
-            <textarea v-model="note.text" rows="10" cols="40"></textarea>
-            <div>
-                <button @click="editNote">Save</button>
-                <button @click="toggleEditMode">Cancel</button>
+    <md-card md-with-hover>
+        <md-card-header>
+            <div class="md-title">{{ note.id }}</div>
+            <div class="md-subhead">created: {{ note.created }}</div>
+        </md-card-header>
+        <md-card-content>
+            <div v-if="!editMode">
+                {{ note.text }}
             </div>
-        </div>
-        <button v-if="!editMode" @click="toggleEditMode">Edit</button>
-        <button @click="removeNote">Remove</button>
-    </div>
+            <div v-else>
+                <md-field>
+                    <label>Edit note</label>
+                    <md-textarea v-model="note.text" md-autogrow></md-textarea>
+                </md-field>
+            </div>
+        </md-card-content>
+        <md-card-actions>
+            <div v-if="editMode">
+                <md-button
+                    @click="editNote"
+                    :disabled="note.text === ''"
+                    class="md-primary"
+                    >Save</md-button
+                >
+                <md-button @click="toggleEditMode">Cancel</md-button>
+            </div>
+            <md-button
+                v-if="!editMode"
+                @click="toggleEditMode"
+                class="md-primary"
+                >Edit</md-button
+            >
+            <md-button class="md-accent" @click="removeNote">Remove</md-button>
+        </md-card-actions>
+    </md-card>
 </template>
 
 <script lang="ts">
@@ -44,24 +64,14 @@ export default class NoteItem extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.note-container {
-    background: #fff;
-    width: 650px;
-    margin: 10px auto;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: left;
-
-    .content {
-        padding-bottom: 10px;
-    }
-}
 strong,
 small {
     display: block;
 }
 button {
     margin-right: 5px;
+}
+.md-card {
+    margin: 10px 0;
 }
 </style>

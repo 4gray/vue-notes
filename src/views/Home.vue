@@ -22,13 +22,18 @@ import NotesList from '../components/NotesList.vue';
 export default class Home extends Vue {
     private notes: Note[] = [];
 
+    generateId(): string {
+        return (
+            'note_' +
+            Math.random()
+                .toString(36)
+                .substr(2, 9)
+        );
+    }
+
     add(text: string): void {
-        this.notes.push({
-            id:
-                '_' +
-                Math.random()
-                    .toString(36)
-                    .substr(2, 9),
+        this.notes.unshift({
+            id: this.generateId(),
             text,
             created: new Date().toLocaleDateString()
         });
@@ -48,10 +53,3 @@ export default class Home extends Vue {
     }
 }
 </script>
-
-<style scoped>
-h3 {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-</style>

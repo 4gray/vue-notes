@@ -2,12 +2,24 @@
     <div>
         <h3>Create a new note</h3>
         <form @submit.prevent="submitForm">
-            <textarea type="text" v-model="text" rows="10" cols="80"></textarea>
-            <br />
-            <button type="submit" :disabled="text === ''">Add note</button>
-            <button type="button" :disabled="text === ''" @click="clearForm">
+            <md-field class="note-textarea">
+                <label>My note</label>
+                <md-textarea v-model="text" md-counter="1200"></md-textarea>
+            </md-field>
+            <md-button
+                type="submit"
+                :disabled="text === ''"
+                class="md-raised md-primary"
+                >Add note</md-button
+            >
+            <md-button
+                type="button"
+                :disabled="text === ''"
+                @click="clearForm"
+                class="md-raised md-accent"
+            >
                 Clear
-            </button>
+            </md-button>
         </form>
     </div>
 </template>
@@ -38,7 +50,7 @@ export default class NoteForm extends Vue {
 </script>
 
 <style lang="scss" scoped>
-textarea {
+md-textarea {
     resize: none;
 }
 button {
