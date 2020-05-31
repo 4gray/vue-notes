@@ -1,12 +1,12 @@
 <template>
     <md-card md-with-hover>
-        <md-card-header>
+        <!-- <md-card-header>
             <div class="md-title">{{ note.id }}</div>
-            <div class="md-subhead">created: {{ note.created }}</div>
-        </md-card-header>
+        </md-card-header> -->
         <md-card-content>
             <div v-if="!editMode">
                 {{ note.text }}
+                <div class="md-subhead">created: {{ note.created }}</div>
             </div>
             <div v-else>
                 <md-field>
@@ -29,9 +29,11 @@
                 v-if="!editMode"
                 @click="toggleEditMode"
                 class="md-primary"
-                >Edit</md-button
+                ><md-icon>edit</md-icon> Edit</md-button
             >
-            <md-button class="md-accent" @click="removeNote">Remove</md-button>
+            <md-button class="md-accent" @click="removeNote">
+                <md-icon>delete</md-icon> Remove</md-button
+            >
         </md-card-actions>
     </md-card>
 </template>

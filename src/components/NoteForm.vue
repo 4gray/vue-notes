@@ -10,7 +10,7 @@
                 type="submit"
                 :disabled="text === ''"
                 class="md-raised md-primary"
-                >Add note</md-button
+                ><md-icon>add</md-icon> Add note</md-button
             >
             <md-button
                 type="button"
@@ -20,6 +20,9 @@
             >
                 Clear
             </md-button>
+            <md-button class="md-primary" @click="generateText"
+                >Lorem ipsum...</md-button
+            >
         </form>
     </div>
 </template>
@@ -45,6 +48,11 @@ export default class NoteForm extends Vue {
 
     clearForm(): void {
         this.text = '';
+    }
+
+    generateText(): void {
+        this.text =
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
     }
 }
 </script>

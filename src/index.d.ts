@@ -8,4 +8,5 @@ declare module 'vue-material/dist/components' {
     export function MdTextarea(Vue: typeof _Vue, options?: any): void;
     export function MdField(Vue: typeof _Vue, options?: any): void;
     export function MdCard(Vue: typeof _Vue, options?: any): void;
+    export function MdIcon(Vue: typeof _Vue, options?: any): void;
 }

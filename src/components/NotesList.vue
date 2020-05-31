@@ -1,13 +1,14 @@
 <template>
     <div>
         <h3>Notes ({{ notes.length }})</h3>
-        <div v-for="note in notes" :key="note.id">
-            <NoteItem
-                :note="note"
-                @editNote="$emit('noteEdited', $event)"
-                @removeNote="$emit('noteRemoved', $event)"
-            />
-        </div>
+
+        <NoteItem
+            v-for="note in notes"
+            :key="note.id"
+            :note="note"
+            @editNote="$emit('noteEdited', $event)"
+            @removeNote="$emit('noteRemoved', $event)"
+        />
     </div>
 </template>
 
