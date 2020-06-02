@@ -1,8 +1,5 @@
 <template>
     <md-card md-with-hover>
-        <!-- <md-card-header>
-            <div class="md-title">{{ note.id }}</div>
-        </md-card-header> -->
         <md-card-content>
             <div v-if="!editMode">
                 {{ note.text }}
@@ -46,6 +43,7 @@ import { Prop, Component, Emit } from 'vue-property-decorator';
 @Component
 export default class NoteItem extends Vue {
     @Prop() note!: Note;
+
     editMode = false;
 
     toggleEditMode(): void {

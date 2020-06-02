@@ -15,7 +15,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { Prop } from 'vue-property-decorator';
 import { Note } from '@/models/note.interface';
 import NoteItem from './NoteItem.vue';
 
@@ -23,6 +22,8 @@ import NoteItem from './NoteItem.vue';
     components: { NoteItem }
 })
 export default class NotesList extends Vue {
-    @Prop() notes!: Note[];
+    get notes(): Note[] {
+        return this.$store.getters.notes;
+    }
 }
 </script>

@@ -15,6 +15,7 @@ import Component from 'vue-class-component';
 import { Note } from '@/models/note.interface';
 import NoteForm from '../components/NoteForm.vue';
 import NotesList from '../components/NotesList.vue';
+import store from '@/store';
 
 @Component({
     components: { NoteForm, NotesList }
@@ -22,34 +23,16 @@ import NotesList from '../components/NotesList.vue';
 export default class Home extends Vue {
     private notes: Note[] = [];
 
-    generateId(): string {
-        return (
-            'note_' +
-            Math.random()
-                .toString(36)
-                .substr(2, 9)
-        );
-    }
-
     add(text: string): void {
-        this.notes.unshift({
-            id: this.generateId(),
-            text,
-            created: new Date().toLocaleDateString()
-        });
+        this.$store.dispatch('addNote', text);
     }
 
     edit(editedNote: Note): void {
-        this.notes = this.notes.map(note => {
-            if (note.id === editedNote.id) {
-                note.text = editedNote.text;
-            }
-            return note;
-        });
+        this.$store.dispatch('editNote', editedNote);
     }
 
     remove(noteId: string): void {
-        this.notes = this.notes.filter(note => note.id !== noteId);
+        this.$store.dispatch('removeNote', noteId);
     }
 }
 </script>
